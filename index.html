@@ -299,6 +299,48 @@ ol.steps li { transition: background .2s; }
 .ix-toast b { display: block; font-size: 12px; font-weight: 600; }
 .ix-toast small { color: #9aa0a6; font-size: 10.5px; }
 
+/* ---------- press-and-hold details section ---------- */
+.zm { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 32px; align-items: start; }
+.zm-left { display: grid; gap: 14px; min-width: 0; }
+.zm-tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.zm-tile { position: relative; aspect-ratio: 4 / 3; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); cursor: pointer; padding: 0; background: var(--inset) center / cover no-repeat; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; touch-action: manipulation; transition: transform .15s var(--ease), box-shadow .15s var(--ease); }
+.zm-tile.on { box-shadow: 0 0 0 2px var(--gold); }
+.zm-tile.holding { transform: scale(.97); }
+.zm-tile .res { position: absolute; left: 8px; right: 8px; bottom: 8px; display: flex; justify-content: space-between; align-items: center; gap: 6px; direction: ltr; }
+.zm-tile .hold { position: absolute; left: 0; bottom: 0; height: 3px; width: 0; background: var(--gold); }
+.zm-tile.holding .hold { width: 100%; transition: width .45s linear; }
+.tierc { display: inline-flex; align-items: center; gap: 4px; font: 800 10px/1 ui-monospace, Consolas, monospace; letter-spacing: .04em; padding: 4px 6px; border-radius: 5px; color: #0b0c0e; background: var(--tier, #9a9fab); }
+.tierc svg { width: 11px; height: 11px; }
+.tierc.t-sd { --tier: #8b909a; } .tierc.t-hd { --tier: #7cc4ff; } .tierc.t-fhd { --tier: #5ee0a0; } .tierc.t-2k { --tier: #4fd1c5; }
+.tierc.t-qhd { --tier: #b49cff; } .tierc.t-4k { --tier: #f5c518; } .tierc.t-5k { --tier: #ff9f43; } .tierc.t-8k { --tier: #ff6b6b; }
+.pillc { font: 600 11px/1 ui-monospace, Consolas, monospace; color: #fff; background: rgba(0,0,0,.66); padding: 4px 7px; border-radius: 5px; font-variant-numeric: tabular-nums; }
+.zm-l { display: inline-flex; gap: 5px; }
+.zm-hint { font-size: 14px; color: var(--text-2); }
+.zm-hint.nudge { color: var(--text); font-weight: 600; }
+.zm-tiers { display: grid; gap: 10px; padding-top: 12px; border-top: 1px solid var(--line); }
+.zm-tier-row { display: flex; flex-wrap: wrap; gap: 6px; direction: ltr; justify-content: flex-start; }
+.site[dir="rtl"] .zm-tier-row { justify-content: flex-end; }
+.zm-tier-row .tierc { font-size: 11px; padding: 5px 8px; }
+.zm-tier-row small { display: block; font: 500 10px/1.2 var(--font); color: var(--text-3); margin-top: 3px; text-align: center; }
+.zm-note { font-size: 13.5px; color: var(--text-3); }
+.zm-view { display: grid; grid-template-columns: minmax(0, 1fr) 260px; border: 1px solid var(--line-strong); border-radius: 14px; overflow: hidden; background: var(--surface); min-height: 380px; text-align: left; }
+.zm-view.pop { animation: zm-pop .28s var(--ease); }
+@keyframes zm-pop { from { opacity: .4; transform: scale(.98); } to { opacity: 1; transform: none; } }
+.zm-stage { background: #060708; display: grid; place-items: center; padding: 14px; min-width: 0; }
+.zm-stage img { max-width: 100%; max-height: 360px; object-fit: contain; border-radius: 6px; display: block; }
+.zm-side { padding: 16px; display: grid; gap: 10px; align-content: start; border-left: 1px solid var(--line); min-width: 0; font-family: var(--font); }
+.zm-cat { font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); font-weight: 700; }
+.zm-title { font-family: "Doran", "Manchette Fine", Georgia, serif; font-size: 16px; line-height: 1.35; font-weight: 600; }
+.zm-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.zm-chips .chip { font-size: 11px; border: 1px solid var(--line); border-radius: 999px; padding: 2px 8px; color: var(--text); }
+.zm-dl { margin: 0; display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 6px 10px; font-size: 12.5px; }
+.zm-dl dt { color: var(--text-3); }
+.zm-dl dd { margin: 0; color: var(--text); overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.zm-dl .ok { color: var(--ok); }
+.zm-dl .sec { grid-column: 1 / -1; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); font-weight: 700; padding-top: 6px; border-top: 1px solid var(--line); margin-top: 2px; }
+@media (max-width: 960px) { .zm { grid-template-columns: 1fr; } }
+@media (max-width: 620px) { .zm-view { grid-template-columns: 1fr; } .zm-side { border-left: 0; border-top: 1px solid var(--line); } .zm-stage img { max-height: 260px; } }
+
 /* hero screenshot of the real picker, with numbered callouts */
 .hero .wrap.shot-wrap { display: block; padding-block: 0; }
 .hero .wrap.hero-text { grid-template-columns: minmax(0, 1fr); padding-block: 80px 40px; }
@@ -502,6 +544,7 @@ tr:last-child td { border-bottom: 0; }
 .after { margin-top: 18px; color: var(--text-2); max-width: 48em; font-size: 15px; }
 
 /* ---------- install ---------- */
+.install-main { display: grid; gap: 24px; align-content: start; min-width: 0; }
 .install { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 48px; align-items: start; }
 ol.steps { list-style: none; counter-reset: s; padding: 0; margin: 0; display: grid; }
 ol.steps li { counter-increment: s; display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--line); }
@@ -571,6 +614,7 @@ footer .lockup .wm { height: 20px; } footer .lockup .mk { height: 24px; width: 2
         <a href="#what"><span class="t-ar">عن الإضافة</span><span class="t-en">Overview</span></a>
         <a href="#try"><span class="t-ar">الدليل التفاعلي</span><span class="t-en">Interactive guide</span></a>
         <a href="#sorting"><span class="t-ar">آلية التصنيف</span><span class="t-en">Classification</span></a>
+        <a href="#zoom"><span class="t-ar">تفاصيل الصورة</span><span class="t-en">Photo details</span></a>
         <a href="#install"><span class="t-ar">التثبيت</span><span class="t-en">Installation</span></a>
         <a href="#faq"><span class="t-ar">الأسئلة الشائعة</span><span class="t-en">FAQ</span></a>
       </nav>
@@ -738,6 +782,37 @@ footer .lockup .wm { height: 20px; } footer .lockup .mk { height: 24px; width: 2
     </div>
   </section>
 
+  <section class="band" id="zoom">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="overline"><span class="t-ar">تفاصيل الصورة</span><span class="t-en">Photo details</span></div>
+        <h2><span class="t-ar">اضغط مطوّلًا لترى كل شيء عن الصورة</span><span class="t-en">Press and hold to see everything about a photo</span></h2>
+        <p class="t-ar">تحمل كل صورة في صفحة الاختيار شارة جودتها وحجم ملفها وأبعادها. واضغط مطوّلًا على أي صورة نحو نصف ثانية لتُفتح بحجم كبير، مع لوحة تعرض دقتها ونسبة أبعادها وحجم طباعتها وصيغتها، وأي بيانات كاميرا أو حقوق مخزّنة في الملف.</p>
+        <p class="t-en">Every photo in the picker carries its quality badge, file size and pixel size. Press and hold any photo for about half a second and it opens large, beside a panel with its resolution, aspect ratio, print size, format, and any camera or rights data stored in the file.</p>
+      </div>
+      <div class="zm">
+        <div class="zm-left">
+          <div class="zm-tiles" id="zmTiles"></div>
+          <p class="zm-hint" id="zmHint"><span class="t-ar">جرّب: اضغط مطوّلًا على إحدى الصور.</span><span class="t-en">Try it: press and hold one of the photos.</span></p>
+          <div class="zm-tiers">
+            <div class="overline"><span class="t-ar">شارات الجودة</span><span class="t-en">Quality badges</span></div>
+            <div class="zm-tier-row" id="zmTierRow"></div>
+            <p class="zm-note"><span class="t-ar">تُحسب الشارة من الضلع الأطول للصورة، فتُقاس الملصقات الطولية واللقطات العرضية بالمعيار نفسه.</span><span class="t-en">Badges are graded by the photo's longer side, so tall posters and wide stills are judged the same way.</span></p>
+          </div>
+        </div>
+        <div class="zm-view" id="zmView" lang="en" dir="ltr">
+          <div class="zm-stage"><img id="zmImg" alt=""></div>
+          <div class="zm-side">
+            <div class="zm-cat" id="zmCat"></div>
+            <div class="zm-title" id="zmTitle"></div>
+            <div class="zm-chips" id="zmChips"></div>
+            <dl class="zm-dl" id="zmDl"></dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="band" id="install">
     <div class="wrap">
       <div class="sec-head">
@@ -747,6 +822,7 @@ footer .lockup .wm { height: 20px; } footer .lockup .mk { height: 24px; width: 2
         <p class="t-en">Install it from the Chrome Web Store in under a minute. Updates arrive automatically after that.</p>
       </div>
       <div class="install">
+        <div class="install-main">
         <ol class="steps">
           <li><div>
             <h3><span class="t-ar">افتح صفحة الإضافة في المتجر</span><span class="t-en">Open AboKhloud’s Photo Fetcher on the Chrome Web Store</span></h3>
@@ -770,6 +846,14 @@ footer .lockup .wm { height: 20px; } footer .lockup .mk { height: 24px; width: 2
             <p class="t-en">Click the extensions icon in the toolbar and pin AboKhloud’s Photo Fetcher so that it is always available.</p>
           </div></li>
         </ol>
+          <div class="card note edge-card">
+            <h3><span class="t-ar">تستخدم Microsoft Edge؟</span><span class="t-en">Using Microsoft Edge?</span></h3>
+            <p class="t-ar">يثبّت Edge الإضافات من متجر Chrome مباشرة. عند فتح صفحة الإضافة اضغط «Allow extensions from other stores» مرة واحدة، ثم «Get».</p>
+            <p class="t-en">Edge installs extensions straight from the Chrome Web Store. On the extension's page, click “Allow extensions from other stores” once, then “Get”.</p>
+            <p class="t-ar">تصل التحديثات تلقائيًا عبر المتجر، ولا يلزم أي إجراء منك.</p>
+            <p class="t-en">Updates arrive automatically through the store; there is nothing to do on your side.</p>
+          </div>
+        </div>
         <div style="display:grid;gap:16px">
           <div class="reel-col">
             <div class="reel ixf" id="inst" role="img" aria-label="Animated installation: open the store page, click Add to Chrome, confirm the permissions, pin the button">
@@ -826,13 +910,6 @@ footer .lockup .wm { height: 20px; } footer .lockup .mk { height: 24px; width: 2
               <li>Select the required photos, then click Download.</li>
               <li>Photos are saved in <span class="code">Downloads\Photo Fetcher</span>, in a folder named after the film.</li>
             </ul>
-          </div>
-          <div class="card note">
-            <h3><span class="t-ar">تستخدم Microsoft Edge؟</span><span class="t-en">Using Microsoft Edge?</span></h3>
-            <p class="t-ar">يثبّت Edge الإضافات من متجر Chrome مباشرة. عند فتح صفحة الإضافة اضغط «Allow extensions from other stores» مرة واحدة، ثم «Get».</p>
-            <p class="t-en">Edge installs extensions straight from the Chrome Web Store. On the extension's page, click “Allow extensions from other stores” once, then “Get”.</p>
-            <p class="t-ar">تصل التحديثات تلقائيًا عبر المتجر، ولا يلزم أي إجراء منك.</p>
-            <p class="t-en">Updates arrive automatically through the store; there is nothing to do on your side.</p>
           </div>
         </div>
       </div>
@@ -988,6 +1065,72 @@ footer .lockup .wm { height: 20px; } footer .lockup .mk { height: 24px; width: 2
       q(13500, run);
     }
     run();
+  })();
+
+  // ---------- press-and-hold details demo ----------
+  (function zoomDemo() {
+    const tilesEl = document.getElementById('zmTiles'); if (!tilesEl) return;
+    const SIZES = { 'event-01.jpg': 2737655, 'still-01.jpg': 1300109, 'still-04.jpg': 61959, 'still-03.jpg': 37379 };
+    const DEMO = [
+      ['event-01.jpg', 'Events & premieres', 'Peyton Elizabeth Lee and Jacob Tremblay at an event for Wildwood (2026)', 'Peyton Elizabeth Lee, Jacob Tremblay'],
+      ['still-01.jpg', 'Stills', 'Jacob Tremblay and Peyton Elizabeth Lee in Wildwood (2026)', 'Jacob Tremblay, Peyton Elizabeth Lee'],
+      ['still-04.jpg', 'Stills', 'Peyton Elizabeth Lee in Wildwood (2026)', 'Peyton Elizabeth Lee'],
+      ['still-03.jpg', 'Stills', 'Angela Bassett and Peyton Elizabeth Lee in Wildwood (2026)', 'Angela Bassett, Peyton Elizabeth Lee'],
+    ];
+    const TIERS = [[7680, '8K', 't-8k', '7680'], [5120, '5K', 't-5k', '5120'], [3840, '4K', 't-4k', '3840'], [2560, 'QHD', 't-qhd', '2560'],
+      [2048, '2K', 't-2k', '2048'], [1920, 'FHD', 't-fhd', '1920'], [1280, 'HD', 't-hd', '1280'], [0, 'SD', 't-sd', '<1280']];
+    const tierOf = (w, h) => TIERS.find((t) => Math.max(w, h) >= t[0]);
+    const ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>';
+    const chip = (t) => `<span class="tierc ${t[2]}">${ICON}${t[1]}</span>`;
+    const fmtB = (n) => n < 1048576 ? `${Math.round(n / 1024)} KB` : `${(n / 1048576).toFixed(2)} MB`;
+    const ratio = (w, h) => { const r = w / h; const k = [[1, '1:1'], [2 / 3, '2:3'], [3 / 2, '3:2'], [4 / 5, '4:5'], [16 / 9, '16:9'], [2.39, '2.39:1'], [2.35, '2.35:1']].find(([v]) => Math.abs(r - v) / v < 0.02); return `${k ? k[1] : r.toFixed(2) + ':1'} (${r.toFixed(2)})`; };
+
+    document.getElementById('zmTierRow').innerHTML = TIERS.slice().reverse().map((t) => `<span>${chip(t)}<small>${t[3]}</small></span>`).join('');
+    tilesEl.innerHTML = DEMO.map(([f], i) => {
+      const p = PH[f], t = tierOf(p.w, p.h);
+      return `<button class="zm-tile" data-i="${i}" style="background-image:url('${p.src}')" aria-label="Press and hold to see details">
+        <span class="res"><span class="zm-l">${chip(t)}<span class="pillc">${fmtB(SIZES[f])}</span></span><span class="pillc">${p.w}×${p.h}</span></span><span class="hold"></span></button>`;
+    }).join('');
+
+    const view = document.getElementById('zmView');
+    function show(i, animate) {
+      const [f, group, cap, people] = DEMO[i], p = PH[f], t = tierOf(p.w, p.h), w = p.w, h = p.h;
+      tilesEl.querySelectorAll('.zm-tile').forEach((el, j) => el.classList.toggle('on', j === i));
+      document.getElementById('zmImg').src = p.src;
+      document.getElementById('zmCat').textContent = `${group} · ${i + 1} of ${DEMO.length}`;
+      document.getElementById('zmTitle').textContent = cap;
+      document.getElementById('zmChips').innerHTML = `${chip(t)}<span class="chip">${w} × ${h} px</span><span class="chip">${fmtB(SIZES[f])}</span><span class="chip">JPEG</span>`;
+      const row = (k, v) => `<dt>${k}</dt><dd>${v}</dd>`;
+      document.getElementById('zmDl').innerHTML =
+        row('Resolution', `${w} × ${h} px`) + row('Megapixels', `${(w * h / 1e6).toFixed(1)} MP`) + row('Aspect ratio', ratio(w, h)) +
+        row('Orientation', w > h * 1.05 ? 'Landscape' : h > w * 1.05 ? 'Portrait' : 'Square') +
+        row('Instagram', w >= 1080 ? '<span class="ok">Wide enough for a 1080 px post</span>' : `Narrower than 1080 px`) +
+        row('Print size', `${(w / 300 * 2.54).toFixed(1)} × ${(h / 300 * 2.54).toFixed(1)} cm at 300 dpi`) +
+        row('File size', fmtB(SIZES[f])) +
+        '<dt class="sec">From IMDb</dt>' + row('People named', people) +
+        '<dt class="sec">Camera (EXIF)</dt>' + row('Stored data', 'None. IMDb removes camera details from its photos.');
+      if (animate) { view.classList.remove('pop'); void view.offsetWidth; view.classList.add('pop'); }
+    }
+    show(0, false);
+
+    const hint = document.getElementById('zmHint');
+    tilesEl.querySelectorAll('.zm-tile').forEach((tile) => {
+      let timer = null, held = false, start = null;
+      const cancel = () => { clearTimeout(timer); timer = null; tile.classList.remove('holding'); };
+      tile.addEventListener('pointerdown', (e) => {
+        if (e.button !== 0) return;
+        held = false; start = [e.clientX, e.clientY]; tile.classList.add('holding');
+        timer = setTimeout(() => { held = true; cancel(); show(+tile.dataset.i, true); hint.classList.remove('nudge'); }, 450);
+      });
+      tile.addEventListener('pointermove', (e) => { if (timer && Math.hypot(e.clientX - start[0], e.clientY - start[1]) > 8) cancel(); });
+      ['pointerup', 'pointerleave', 'pointercancel'].forEach((t) => tile.addEventListener(t, cancel));
+      tile.addEventListener('contextmenu', (e) => e.preventDefault());
+      tile.addEventListener('click', (e) => {
+        if (held) { held = false; return; }
+        if (e.detail === 0) { show(+tile.dataset.i, true); return; } // keyboard: Enter or Space opens it
+        hint.classList.add('nudge'); // a quick tap: remind them to hold
+      });
+    });
   })();
 
   // ---------- simulator data (the picker mirrors the real, English UI) ----------
