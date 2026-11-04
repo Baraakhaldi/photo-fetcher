@@ -94,8 +94,7 @@ button { font: inherit; color: inherit; }
 .mark { display: inline-block; flex: none; }
 
 /* ---------- header (68px, sticky) ---------- */
-body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
-.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.top { position: relative; z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); }  /* scrolls away with the page */
 /* the header keeps one fixed layout in both languages: logo and name on the left, menu and language button on the right */
 .top .wrap { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 16px; direction: ltr; }
 .lockup { display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--text); }
@@ -483,7 +482,7 @@ section.band { padding-block: 80px; border-top: 1px solid var(--line); }
 .file span { overflow-wrap: anywhere; }
 .file small { color: var(--text-3); font-size: 11px; font-variant-numeric: tabular-nums; }
 
-.narr { position: sticky; top: calc(84px + env(safe-area-inset-top, 0px)); display: grid; gap: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 22px; }
+.narr { position: sticky; top: calc(16px + env(safe-area-inset-top, 0px)); display: grid; gap: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 22px; }
 .narr h3 { font-size: 21px; }
 .narr p { color: var(--text-2); font-size: 15px; }
 .narr .do { font-size: 14px; background: var(--inset); border-radius: 8px; padding: 12px 14px; }
